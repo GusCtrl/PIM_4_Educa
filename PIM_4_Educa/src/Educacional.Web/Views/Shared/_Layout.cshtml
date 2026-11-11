@@ -1,0 +1,75 @@
+@{
+    var perfil = User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value;
+}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - Plataforma Educacional</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script>
+        // Aplica as preferências de acessibilidade antes de desenhar a página (evita "piscar").
+        (function () {
+            try {
+                var tema = localStorage.getItem('pim-tema');
+                if (tema) document.documentElement.setAttribute('data-tema', tema);
+                var fonte = localStorage.getItem('pim-fonte');
+                if (fonte) document.documentElement.style.setProperty('--fonte', fonte + '%');
+            } catch (e) { }
+        })();
+    </script>
+</head>
+<body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="topo">
+        <div class="topo-in">
+            <a class="marca" asp-controller="Home" asp-action="Index">Plataforma Educacional</a>
+            <div class="ferramentas" role="group" aria-label="Opções de acessibilidade">
+                <button type="button" id="btn-fonte-menos" aria-label="Diminuir o tamanho do texto">A-</button>
+                <button type="button" id="btn-fonte-mais" aria-label="Aumentar o tamanho do texto">A+</button>
+                <button type="button" id="btn-contraste" aria-pressed="false">Alto contraste</button>
+            </div>
+        </div>
+
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            <nav class="menu" aria-label="Menu principal">
+                <a asp-controller="Home" asp-action="Index">Início</a>
+                @if (User.IsInRole(Perfis.Admin))
+                {
+                    <a asp-controller="Admin" asp-action="Usuarios">Usuários</a>
+                    <a asp-controller="Admin" asp-action="Disciplinas">Disciplinas</a>
+                    <a asp-controller="Admin" asp-action="Turmas">Turmas</a>
+                    <a asp-controller="Admin" asp-action="Matriculas">Matrículas</a>
+                }
+                else
+                {
+                    <a asp-controller="Turmas" asp-action="Index">Minhas turmas</a>
+                }
+                @if (User.IsInRole(Perfis.Aluno))
+                {
+                    <a asp-controller="Atividades" asp-action="Pendentes">Atividades pendentes</a>
+                    <a asp-controller="Notas" asp-action="Boletim">Boletim</a>
+                }
+                <span class="usuario">@(User.Identity?.Name) (@perfil)</span>
+                <form asp-controller="Account" asp-action="Logout" method="post" class="inline">
+                    <button type="submit" class="link">Sair</button>
+                </form>
+            </nav>
+        }
+    </header>
+
+    <main id="conteudo" tabindex="-1">
+        <partial name="_Alertas" />
+        @RenderBody()
+    </main>
+
+    <footer class="rodape">
+        <p>PIM IV &ndash; Análise e Desenvolvimento de Sistemas &ndash; UNIP</p>
+    </footer>
+
+    <script src="~/js/site.js"></script>
+</body>
+</html>

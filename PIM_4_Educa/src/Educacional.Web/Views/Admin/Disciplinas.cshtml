@@ -1,0 +1,43 @@
+@model List<DisciplinaDto>
+@{
+    ViewData["Title"] = "Disciplinas";
+}
+<h1>Disciplinas</h1>
+
+<section class="cartao" aria-labelledby="h-nova">
+    <h2 id="h-nova">Nova disciplina</h2>
+    <form asp-action="CriarDisciplina" method="post">
+        <div class="campo">
+            <label for="d-nome">Nome</label>
+            <input id="d-nome" name="Nome" type="text" maxlength="100" required />
+        </div>
+        <div class="campo">
+            <label for="d-desc">Descrição (opcional)</label>
+            <textarea id="d-desc" name="Descricao" rows="3" maxlength="300"></textarea>
+        </div>
+        <button class="btn" type="submit">Cadastrar</button>
+    </form>
+</section>
+
+<section aria-labelledby="h-lista">
+    <h2 id="h-lista">Disciplinas cadastradas</h2>
+    @if (Model.Count == 0)
+    {
+        <p class="vazio">Nenhuma disciplina cadastrada.</p>
+    }
+    else
+    {
+        <div class="tabela-wrap">
+            <table>
+                <caption class="sr-only">Lista de disciplinas</caption>
+                <thead><tr><th scope="col">Nome</th><th scope="col">Descrição</th></tr></thead>
+                <tbody>
+                    @foreach (var d in Model)
+                    {
+                        <tr><th scope="row">@d.Nome</th><td>@d.Descricao</td></tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</section>

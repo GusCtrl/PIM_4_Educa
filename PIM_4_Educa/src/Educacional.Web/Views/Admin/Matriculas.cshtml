@@ -1,0 +1,81 @@
+@model AdminMatriculasViewModel
+@{
+    ViewData["Title"] = "Matrículas";
+}
+<h1>Matrículas</h1>
+
+<section class="cartao" aria-labelledby="h-escolha">
+    <h2 id="h-escolha">Escolha a turma</h2>
+    <form method="get" asp-action="Matriculas" class="grade-form">
+        <div class="campo">
+            <label for="turmaId">Turma</label>
+            <select id="turmaId" name="turmaId" required>
+                <option value="">Selecione...</option>
+                @foreach (var t in Model.Turmas)
+                {
+                    <option value="@t.Id" selected="@(Model.Turma?.Id == t.Id)">@t.Nome (@t.Disciplina)</option>
+                }
+            </select>
+        </div>
+        <div class="campo"><button class="btn" type="submit">Abrir</button></div>
+    </form>
+</section>
+
+@if (Model.Turma is not null)
+{
+    <section class="cartao" aria-labelledby="h-matricular">
+        <h2 id="h-matricular">Matricular aluno em @Model.Turma.Nome</h2>
+        @if (Model.AlunosDisponiveis.Count == 0)
+        {
+            <p class="vazio">Não há alunos ativos disponíveis para matricular.</p>
+        }
+        else
+        {
+            <form asp-action="Matricular" method="post" class="grade-form">
+                <input type="hidden" name="turmaId" value="@Model.Turma.Id" />
+                <div class="campo">
+                    <label for="alunoId">Aluno</label>
+                    <select id="alunoId" name="alunoId" asp-items="Model.AlunosDisponiveis" required>
+                        <option value="">Selecione...</option>
+                    </select>
+                </div>
+                <div class="campo"><button class="btn" type="submit">Matricular</button></div>
+            </form>
+        }
+    </section>
+
+    <section aria-labelledby="h-matriculados">
+        <h2 id="h-matriculados">Alunos matriculados</h2>
+        @if (Model.Matriculados.Count == 0)
+        {
+            <p class="vazio">Nenhum aluno matriculado.</p>
+        }
+        else
+        {
+            <div class="tabela-wrap">
+                <table>
+                    <caption class="sr-only">Alunos matriculados na turma</caption>
+                    <thead>
+                        <tr><th scope="col">Nome</th><th scope="col">E-mail</th><th scope="col">Ação</th></tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var a in Model.Matriculados)
+                        {
+                            <tr>
+                                <th scope="row">@a.Nome</th>
+                                <td>@a.Email</td>
+                                <td>
+                                    <form asp-action="RemoverMatricula" method="post" class="inline">
+                                        <input type="hidden" name="turmaId" value="@Model.Turma.Id" />
+                                        <input type="hidden" name="alunoId" value="@a.AlunoId" />
+                                        <button class="btn btn-sec btn-peq" type="submit">Remover<span class="sr-only"> @a.Nome da turma</span></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </section>
+}

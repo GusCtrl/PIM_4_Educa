@@ -1,0 +1,145 @@
+@model TurmaDetalheViewModel
+@{
+    ViewData["Title"] = Model.Turma.Nome;
+}
+<nav class="migalhas" aria-label="Você está em">
+    <a asp-action="Index">Turmas</a> &rsaquo; <span>@Model.Turma.Nome</span>
+</nav>
+
+<h1>@Model.Turma.Nome</h1>
+<p class="sub">@Model.Turma.Disciplina &middot; @Model.Turma.Periodo &middot; Professor(a): @Model.Turma.Professor</p>
+
+@* ---------------- Avisos ---------------- *@
+<section class="cartao" aria-labelledby="h-avisos">
+    <h2 id="h-avisos">Avisos</h2>
+
+    @if (Model.Avisos.Count == 0)
+    {
+        <p class="vazio">Nenhum aviso publicado.</p>
+    }
+    else
+    {
+        <ul class="lista">
+            @foreach (var a in Model.Avisos)
+            {
+                <li>
+                    <strong>@a.Autor</strong>
+                    <time datetime="@a.DataPublicacao.ToString("s")">@a.DataPublicacao.ToString("dd/MM/yyyy HH:mm")</time>
+                    <p>@a.Texto</p>
+                </li>
+            }
+        </ul>
+    }
+
+    @if (Model.PodeGerir)
+    {
+        <form asp-controller="Avisos" asp-action="Criar" method="post" class="form-bloco">
+            <input type="hidden" name="TurmaId" value="@Model.Turma.Id" />
+            <div class="campo">
+                <label for="aviso-texto">Novo aviso</label>
+                <textarea id="aviso-texto" name="Texto" rows="3" maxlength="1000" required></textarea>
+            </div>
+            <button class="btn" type="submit">Publicar aviso</button>
+        </form>
+    }
+</section>
+
+@* ---------------- Atividades ---------------- *@
+<section class="cartao" aria-labelledby="h-atividades">
+    <h2 id="h-atividades">Atividades</h2>
+
+    @if (Model.Atividades.Count == 0)
+    {
+        <p class="vazio">Nenhuma atividade cadastrada.</p>
+    }
+    else
+    {
+        <div class="tabela-wrap">
+            <table>
+                <caption class="sr-only">Atividades da turma</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Atividade</th>
+                        <th scope="col">Prazo</th>
+                        <th scope="col">Situação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var a in Model.Atividades)
+                    {
+                        var encerrada = a.Prazo < DateTime.Now;
+                        <tr>
+                            <td><a asp-controller="Atividades" asp-action="Detalhes" asp-route-id="@a.Id">@a.Titulo</a></td>
+                            <td>@a.Prazo.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td><span class="selo @(encerrada ? "selo-neutro" : "selo-ok")">@(encerrada ? "Encerrada" : "Aberta")</span></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+    @if (User.IsInRole(Perfis.Professor))
+    {
+        <p><a class="btn" asp-controller="Atividades" asp-action="Criar" asp-route-turmaId="@Model.Turma.Id">Nova atividade</a></p>
+    }
+</section>
+
+@* ---------------- Materiais ---------------- *@
+<section class="cartao" aria-labelledby="h-materiais">
+    <h2 id="h-materiais">Materiais de apoio</h2>
+
+    @if (Model.Materiais.Count == 0)
+    {
+        <p class="vazio">Nenhum material disponível.</p>
+    }
+    else
+    {
+        <ul class="lista">
+            @foreach (var m in Model.Materiais)
+            {
+                <li><a href="@m.Url" target="_blank" rel="noopener noreferrer">@m.Titulo<span class="sr-only"> (abre em nova aba)</span></a></li>
+            }
+        </ul>
+    }
+
+    @if (Model.PodeGerir)
+    {
+        <form asp-controller="Materiais" asp-action="Criar" method="post" class="form-bloco">
+            <input type="hidden" name="TurmaId" value="@Model.Turma.Id" />
+            <div class="campo">
+                <label for="mat-titulo">Título do material</label>
+                <input id="mat-titulo" name="Titulo" type="text" maxlength="150" required />
+            </div>
+            <div class="campo">
+                <label for="mat-url">Link (https://...)</label>
+                <input id="mat-url" name="Url" type="url" maxlength="400" required />
+            </div>
+            <button class="btn" type="submit">Adicionar material</button>
+        </form>
+    }
+</section>
+
+@* ---------------- Alunos (somente professor/admin) ---------------- *@
+@if (Model.PodeGerir)
+{
+    <section class="cartao" aria-labelledby="h-alunos">
+        <h2 id="h-alunos">Alunos matriculados</h2>
+
+        @if (Model.Alunos.Count == 0)
+        {
+            <p class="vazio">Nenhum aluno matriculado.</p>
+        }
+        else
+        {
+            <ul class="lista">
+                @foreach (var a in Model.Alunos)
+                {
+                    <li>@a.Nome <small>(@a.Email)</small></li>
+                }
+            </ul>
+        }
+
+        <p><a class="btn btn-sec" asp-controller="Notas" asp-action="MediaTurma" asp-route-turmaId="@Model.Turma.Id">Ver média da turma</a></p>
+    </section>
+}

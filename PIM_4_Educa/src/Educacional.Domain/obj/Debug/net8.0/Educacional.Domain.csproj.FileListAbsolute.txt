@@ -1,0 +1,11 @@
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Domain\bin\Debug\net8.0\Educacional.Domain.deps.json
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Domain\bin\Debug\net8.0\Educacional.Domain.dll
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Domain\bin\Debug\net8.0\Educacional.Domain.pdb
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Domain\obj\Debug\net8.0\Educacional.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Domain\obj\Debug\net8.0\Educacional.Domain.AssemblyInfoInputs.cache
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Domain\obj\Debug\net8.0\Educacional.Domain.AssemblyInfo.cs
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Domain\obj\Debug\net8.0\Educacional.Domain.csproj.CoreCompileInputs.cache
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Domain\obj\Debug\net8.0\Educacional.Domain.dll
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Domain\obj\Debug\net8.0\refint\Educacional.Domain.dll
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Domain\obj\Debug\net8.0\Educacional.Domain.pdb
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Domain\obj\Debug\net8.0\ref\Educacional.Domain.dll

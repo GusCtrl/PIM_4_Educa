@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "6R69cSC7krI=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\maxim\\OneDrive\\Documentos\\PIM_4_Educa\\PIM_4_Educa\\src\\Educacional.Domain\\Educacional.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\maxim\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.27\\microsoft.netcore.app.ref.8.0.27.nupkg.sha512",
+    "C:\\Users\\maxim\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.27\\microsoft.windowsdesktop.app.ref.8.0.27.nupkg.sha512",
+    "C:\\Users\\maxim\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.27\\microsoft.aspnetcore.app.ref.8.0.27.nupkg.sha512"
+  ],
+  "logs": []
+}

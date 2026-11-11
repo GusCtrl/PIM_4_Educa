@@ -1,0 +1,71 @@
+@model List<UsuarioDto>
+@{
+    ViewData["Title"] = "Usuários";
+}
+<h1>Usuários</h1>
+
+<section class="cartao" aria-labelledby="h-novo">
+    <h2 id="h-novo">Novo usuário</h2>
+    <form asp-action="CriarUsuario" method="post" class="grade-form">
+        <div class="campo">
+            <label for="u-nome">Nome</label>
+            <input id="u-nome" name="Nome" type="text" maxlength="120" required />
+        </div>
+        <div class="campo">
+            <label for="u-email">E-mail</label>
+            <input id="u-email" name="Email" type="email" maxlength="150" required />
+        </div>
+        <div class="campo">
+            <label for="u-senha">Senha (mínimo 6 caracteres)</label>
+            <input id="u-senha" name="Senha" type="password" minlength="6" autocomplete="new-password" required />
+        </div>
+        <div class="campo">
+            <label for="u-perfil">Perfil</label>
+            <select id="u-perfil" name="Perfil" required>
+                <option value="">Selecione...</option>
+                <option value="@Perfis.Aluno">Aluno</option>
+                <option value="@Perfis.Professor">Professor</option>
+                <option value="@Perfis.Admin">Admin</option>
+            </select>
+        </div>
+        <div class="campo"><button class="btn" type="submit">Cadastrar</button></div>
+    </form>
+</section>
+
+<section aria-labelledby="h-lista">
+    <h2 id="h-lista">Usuários cadastrados</h2>
+    <div class="tabela-wrap">
+        <table>
+            <caption class="sr-only">Lista de usuários</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Perfil</th>
+                    <th scope="col">Situação</th>
+                    <th scope="col">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var u in Model)
+                {
+                    <tr>
+                        <th scope="row">@u.Nome</th>
+                        <td>@u.Email</td>
+                        <td>@u.Perfil</td>
+                        <td><span class="selo @(u.Ativo ? "selo-ok" : "selo-neutro")">@(u.Ativo ? "Ativo" : "Inativo")</span></td>
+                        <td>
+                            <form asp-action="AlternarUsuario" method="post" class="inline">
+                                <input type="hidden" name="id" value="@u.Id" />
+                                <input type="hidden" name="ativo" value="@((!u.Ativo).ToString().ToLowerInvariant())" />
+                                <button class="btn btn-sec btn-peq" type="submit">
+                                    @(u.Ativo ? "Desativar" : "Ativar")<span class="sr-only"> @u.Nome</span>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

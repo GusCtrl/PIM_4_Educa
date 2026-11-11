@@ -1,0 +1,36 @@
+@model CriarAtividadeViewModel
+@{
+    ViewData["Title"] = "Nova atividade";
+}
+<nav class="migalhas" aria-label="Você está em">
+    <a asp-controller="Turmas" asp-action="Detalhes" asp-route-id="@Model.TurmaId">@(Model.TurmaNome ?? "Turma")</a> &rsaquo; <span>Nova atividade</span>
+</nav>
+
+<h1>Nova atividade</h1>
+
+<form asp-action="Criar" method="post" class="cartao" novalidate>
+    <div asp-validation-summary="ModelOnly" class="alerta erro" role="alert"></div>
+    <input type="hidden" asp-for="TurmaId" />
+    <input type="hidden" asp-for="TurmaNome" />
+
+    <div class="campo">
+        <label asp-for="Titulo">Título</label>
+        <input asp-for="Titulo" type="text" maxlength="150" required />
+        <span asp-validation-for="Titulo" class="campo-erro"></span>
+    </div>
+
+    <div class="campo">
+        <label asp-for="Descricao">Descrição (opcional)</label>
+        <textarea asp-for="Descricao" rows="5" maxlength="1000"></textarea>
+        <span asp-validation-for="Descricao" class="campo-erro"></span>
+    </div>
+
+    <div class="campo">
+        <label asp-for="Prazo">Prazo de entrega</label>
+        <input asp-for="Prazo" type="datetime-local" required />
+        <span asp-validation-for="Prazo" class="campo-erro"></span>
+    </div>
+
+    <button class="btn" type="submit">Criar atividade</button>
+    <a class="btn btn-sec" asp-controller="Turmas" asp-action="Detalhes" asp-route-id="@Model.TurmaId">Cancelar</a>
+</form>

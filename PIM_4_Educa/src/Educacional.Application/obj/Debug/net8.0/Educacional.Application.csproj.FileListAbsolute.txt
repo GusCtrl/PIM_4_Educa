@@ -1,0 +1,15 @@
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Application\bin\Debug\net8.0\Educacional.Application.deps.json
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Application\bin\Debug\net8.0\Educacional.Application.dll
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Application\bin\Debug\net8.0\Educacional.Application.pdb
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Application\bin\Debug\net8.0\Educacional.Domain.dll
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Application\bin\Debug\net8.0\Educacional.Domain.pdb
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Application\obj\Debug\net8.0\Educacional.Application.csproj.AssemblyReference.cache
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Application\obj\Debug\net8.0\Educacional.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Application\obj\Debug\net8.0\Educacional.Application.AssemblyInfoInputs.cache
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Application\obj\Debug\net8.0\Educacional.Application.AssemblyInfo.cs
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Application\obj\Debug\net8.0\Educacional.Application.csproj.CoreCompileInputs.cache
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Application\obj\Debug\net8.0\Educacio.91FC4595.Up2Date
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Application\obj\Debug\net8.0\Educacional.Application.dll
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Application\obj\Debug\net8.0\refint\Educacional.Application.dll
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Application\obj\Debug\net8.0\Educacional.Application.pdb
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Application\obj\Debug\net8.0\ref\Educacional.Application.dll

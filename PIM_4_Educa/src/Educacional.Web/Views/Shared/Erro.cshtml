@@ -1,0 +1,9 @@
+@model ErroViewModel
+@{
+    ViewData["Title"] = "Aviso";
+}
+<section class="cartao">
+    <h1>@(Model.Status == 403 ? "Acesso negado" : Model.Status == 404 ? "Não encontrado" : "Não foi possível continuar")</h1>
+    <p>@Model.Mensagem</p>
+    <p><a class="btn" asp-controller="Home" asp-action="Index">Voltar ao início</a></p>
+</section>

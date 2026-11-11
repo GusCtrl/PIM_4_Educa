@@ -1,0 +1,38 @@
+@model List<BoletimItemDto>
+@{
+    ViewData["Title"] = "Boletim";
+}
+<h1>Meu boletim</h1>
+
+@if (Model.Count == 0)
+{
+    <p class="vazio">Você ainda não está matriculado em nenhuma turma.</p>
+}
+else
+{
+    <div class="tabela-wrap">
+        <table>
+            <caption class="sr-only">Notas por turma</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Disciplina</th>
+                    <th scope="col">Turma</th>
+                    <th scope="col">Atividades entregues</th>
+                    <th scope="col">Média</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var b in Model)
+                {
+                    <tr>
+                        <th scope="row">@b.Disciplina</th>
+                        <td><a asp-controller="Turmas" asp-action="Detalhes" asp-route-id="@b.TurmaId">@b.Turma</a></td>
+                        <td>@b.TotalEntregas de @b.TotalAtividades</td>
+                        <td>@(b.Media is null ? "—" : b.Media.Value.ToString("0.00"))</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <p class="nota-rodape">A média considera apenas as entregas já corrigidas pelo professor.</p>
+}

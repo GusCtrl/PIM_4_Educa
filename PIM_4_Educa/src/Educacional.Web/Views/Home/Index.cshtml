@@ -1,0 +1,79 @@
+@model DashboardViewModel
+@{
+    ViewData["Title"] = "Início";
+}
+<h1>Olá, @Model.Nome</h1>
+
+@if (Model.Perfil == Perfis.Admin)
+{
+    <p class="sub">Painel administrativo</p>
+    <div class="grade">
+        <a class="indicador" asp-controller="Admin" asp-action="Usuarios">
+            <span class="numero">@Model.TotalUsuarios</span>
+            <span>Usuários</span>
+        </a>
+        <a class="indicador" asp-controller="Admin" asp-action="Disciplinas">
+            <span class="numero">@Model.TotalDisciplinas</span>
+            <span>Disciplinas</span>
+        </a>
+        <a class="indicador" asp-controller="Admin" asp-action="Turmas">
+            <span class="numero">@Model.TotalTurmas</span>
+            <span>Turmas</span>
+        </a>
+    </div>
+}
+else
+{
+    <section aria-labelledby="h-turmas">
+        <h2 id="h-turmas">Minhas turmas</h2>
+        @if (Model.Turmas.Count == 0)
+        {
+            <p class="vazio">Você ainda não tem turmas.</p>
+        }
+        else
+        {
+            <div class="grade">
+                @foreach (var t in Model.Turmas)
+                {
+                    <a class="cartao-link" asp-controller="Turmas" asp-action="Detalhes" asp-route-id="@t.Id">
+                        <strong>@t.Nome</strong>
+                        <span>@t.Disciplina</span>
+                        <small>@t.Periodo &middot; @t.Professor</small>
+                    </a>
+                }
+            </div>
+        }
+    </section>
+
+    @if (Model.Perfil == Perfis.Aluno)
+    {
+        <section aria-labelledby="h-pendentes">
+            <h2 id="h-pendentes">Atividades pendentes</h2>
+            @if (Model.Pendentes.Count == 0)
+            {
+                <p class="vazio">Nenhuma atividade pendente. Bom trabalho!</p>
+            }
+            else
+            {
+                <div class="tabela-wrap">
+                    <table>
+                        <caption class="sr-only">Atividades pendentes</caption>
+                        <thead>
+                            <tr><th scope="col">Atividade</th><th scope="col">Turma</th><th scope="col">Prazo</th></tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var a in Model.Pendentes)
+                            {
+                                <tr>
+                                    <td><a asp-controller="Atividades" asp-action="Detalhes" asp-route-id="@a.AtividadeId">@a.Titulo</a></td>
+                                    <td>@a.Turma</td>
+                                    <td>@a.Prazo.ToString("dd/MM/yyyy HH:mm")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </section>
+    }
+}

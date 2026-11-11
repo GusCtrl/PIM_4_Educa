@@ -1,0 +1,17 @@
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Infrastructure\bin\Debug\net8.0\Educacional.Infrastructure.deps.json
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Infrastructure\bin\Debug\net8.0\Educacional.Infrastructure.dll
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Infrastructure\bin\Debug\net8.0\Educacional.Infrastructure.pdb
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Infrastructure\bin\Debug\net8.0\Educacional.Application.dll
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Infrastructure\bin\Debug\net8.0\Educacional.Domain.dll
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Infrastructure\bin\Debug\net8.0\Educacional.Application.pdb
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Infrastructure\bin\Debug\net8.0\Educacional.Domain.pdb
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Infrastructure\obj\Debug\net8.0\Educacional.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Infrastructure\obj\Debug\net8.0\Educacional.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Infrastructure\obj\Debug\net8.0\Educacional.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Infrastructure\obj\Debug\net8.0\Educacional.Infrastructure.AssemblyInfo.cs
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Infrastructure\obj\Debug\net8.0\Educacional.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Infrastructure\obj\Debug\net8.0\Educacio.E7033292.Up2Date
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Infrastructure\obj\Debug\net8.0\Educacional.Infrastructure.dll
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Infrastructure\obj\Debug\net8.0\refint\Educacional.Infrastructure.dll
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Infrastructure\obj\Debug\net8.0\Educacional.Infrastructure.pdb
+C:\Users\maxim\OneDrive\Documentos\PIM_4_Educa\PIM_4_Educa\src\Educacional.Infrastructure\obj\Debug\net8.0\ref\Educacional.Infrastructure.dll

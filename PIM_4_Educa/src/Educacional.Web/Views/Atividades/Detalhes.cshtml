@@ -1,0 +1,112 @@
+@model AtividadeDetalheViewModel
+@{
+    var a = Model.Atividade;
+    ViewData["Title"] = a.Titulo;
+}
+<nav class="migalhas" aria-label="Você está em">
+    <a asp-controller="Turmas" asp-action="Detalhes" asp-route-id="@a.TurmaId">@a.Turma</a> &rsaquo; <span>@a.Titulo</span>
+</nav>
+
+<h1>@a.Titulo</h1>
+<p class="sub">
+    Prazo: <time datetime="@a.Prazo.ToString("s")">@a.Prazo.ToString("dd/MM/yyyy HH:mm")</time>
+    &middot;
+    <span class="selo @(Model.PrazoEncerrado ? "selo-neutro" : "selo-ok")">@(Model.PrazoEncerrado ? "Encerrada" : "Aberta")</span>
+</p>
+
+<section class="cartao" aria-labelledby="h-desc">
+    <h2 id="h-desc">Descrição</h2>
+    @if (string.IsNullOrWhiteSpace(a.Descricao))
+    {
+        <p class="vazio">Sem descrição.</p>
+    }
+    else
+    {
+        <p class="texto-puro">@a.Descricao</p>
+    }
+</section>
+
+@if (User.IsInRole(Perfis.Aluno))
+{
+    <section class="cartao" aria-labelledby="h-entrega">
+        <h2 id="h-entrega">Minha entrega</h2>
+
+        @if (a.MinhaEntrega is not null)
+        {
+            <p>Enviada em @a.MinhaEntrega.DataEnvio.ToString("dd/MM/yyyy HH:mm").</p>
+            <p class="texto-puro">@a.MinhaEntrega.Conteudo</p>
+            <p>
+                <strong>Nota:</strong>
+                @(a.MinhaEntrega.Nota is null ? "ainda não corrigida" : a.MinhaEntrega.Nota.Value.ToString("0.00"))
+            </p>
+        }
+        else if (Model.PrazoEncerrado)
+        {
+            <p class="vazio">O prazo encerrou e nenhuma entrega foi enviada.</p>
+        }
+        else
+        {
+            <form asp-controller="Entregas" asp-action="Enviar" method="post">
+                <input type="hidden" name="AtividadeId" value="@a.Id" />
+                <div class="campo">
+                    <label for="conteudo">Sua resposta</label>
+                    <textarea id="conteudo" name="Conteudo" rows="8" required></textarea>
+                </div>
+                <button class="btn" type="submit">Enviar entrega</button>
+            </form>
+        }
+    </section>
+}
+else
+{
+    <section class="cartao" aria-labelledby="h-entregas">
+        <h2 id="h-entregas">Entregas dos alunos</h2>
+
+        @if (Model.Entregas.Count == 0)
+        {
+            <p class="vazio">Nenhuma entrega recebida até agora.</p>
+        }
+        else
+        {
+            <div class="tabela-wrap">
+                <table>
+                    <caption class="sr-only">Entregas recebidas</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Aluno</th>
+                            <th scope="col">Enviada em</th>
+                            <th scope="col">Resposta</th>
+                            <th scope="col">Nota</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var e in Model.Entregas)
+                        {
+                            <tr>
+                                <th scope="row">@e.Aluno</th>
+                                <td>@e.DataEnvio.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td class="texto-puro">@e.Conteudo</td>
+                                <td>
+                                    @if (User.IsInRole(Perfis.Professor))
+                                    {
+                                        <form asp-controller="Entregas" asp-action="LancarNota" method="post" class="nota-form">
+                                            <input type="hidden" name="entregaId" value="@e.Id" />
+                                            <input type="hidden" name="atividadeId" value="@a.Id" />
+                                            <label class="sr-only" for="nota-@e.Id">Nota de @e.Aluno (0 a 10)</label>
+                                            <input id="nota-@e.Id" name="nota" type="text" inputmode="decimal" size="4" value="@(e.Nota?.ToString("0.00"))" />
+                                            <button class="btn btn-peq" type="submit">Salvar</button>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        @(e.Nota is null ? "—" : e.Nota.Value.ToString("0.00"))
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </section>
+}

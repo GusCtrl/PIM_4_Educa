@@ -1,0 +1,40 @@
+@model MediaTurmaViewModel
+@{
+    ViewData["Title"] = "Média da turma";
+}
+<nav class="migalhas" aria-label="Você está em">
+    <a asp-controller="Turmas" asp-action="Detalhes" asp-route-id="@Model.Turma.Id">@Model.Turma.Nome</a> &rsaquo; <span>Média da turma</span>
+</nav>
+
+<h1>Média da turma</h1>
+<p class="sub">@Model.Turma.Nome &middot; @Model.Turma.Disciplina</p>
+
+@if (Model.Alunos.Count == 0)
+{
+    <p class="vazio">Nenhum aluno matriculado.</p>
+}
+else
+{
+    <div class="tabela-wrap">
+        <table>
+            <caption class="sr-only">Média de cada aluno</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Aluno</th>
+                    <th scope="col">Entregas</th>
+                    <th scope="col">Média</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var a in Model.Alunos)
+                {
+                    <tr>
+                        <th scope="row">@a.Aluno</th>
+                        <td>@a.Entregas</td>
+                        <td>@(a.Media is null ? "—" : a.Media.Value.ToString("0.00"))</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

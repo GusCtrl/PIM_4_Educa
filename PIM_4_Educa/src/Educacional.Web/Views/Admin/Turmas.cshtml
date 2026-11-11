@@ -1,0 +1,69 @@
+@model AdminTurmasViewModel
+@{
+    ViewData["Title"] = "Turmas";
+}
+<h1>Turmas</h1>
+
+<section class="cartao" aria-labelledby="h-nova">
+    <h2 id="h-nova">Nova turma</h2>
+    <form asp-action="CriarTurma" method="post" class="grade-form">
+        <div class="campo">
+            <label for="t-nome">Nome da turma</label>
+            <input id="t-nome" name="Nome" type="text" maxlength="60" required />
+        </div>
+        <div class="campo">
+            <label for="t-periodo">Período (ex.: 2026/2)</label>
+            <input id="t-periodo" name="Periodo" type="text" maxlength="10" required />
+        </div>
+        <div class="campo">
+            <label for="t-disc">Disciplina</label>
+            <select id="t-disc" name="DisciplinaId" asp-items="Model.Disciplinas" required>
+                <option value="">Selecione...</option>
+            </select>
+        </div>
+        <div class="campo">
+            <label for="t-prof">Professor</label>
+            <select id="t-prof" name="ProfessorId" asp-items="Model.Professores" required>
+                <option value="">Selecione...</option>
+            </select>
+        </div>
+        <div class="campo"><button class="btn" type="submit">Criar turma</button></div>
+    </form>
+</section>
+
+<section aria-labelledby="h-lista">
+    <h2 id="h-lista">Turmas cadastradas</h2>
+    @if (Model.Turmas.Count == 0)
+    {
+        <p class="vazio">Nenhuma turma cadastrada.</p>
+    }
+    else
+    {
+        <div class="tabela-wrap">
+            <table>
+                <caption class="sr-only">Lista de turmas</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Turma</th>
+                        <th scope="col">Disciplina</th>
+                        <th scope="col">Período</th>
+                        <th scope="col">Professor(a)</th>
+                        <th scope="col">Alunos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var t in Model.Turmas)
+                    {
+                        <tr>
+                            <td><a asp-controller="Turmas" asp-action="Detalhes" asp-route-id="@t.Id">@t.Nome</a></td>
+                            <td>@t.Disciplina</td>
+                            <td>@t.Periodo</td>
+                            <td>@t.Professor</td>
+                            <td><a asp-action="Matriculas" asp-route-turmaId="@t.Id">Gerenciar matrículas<span class="sr-only"> de @t.Nome</span></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</section>

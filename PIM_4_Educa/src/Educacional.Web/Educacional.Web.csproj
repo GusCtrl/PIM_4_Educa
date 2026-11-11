@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <!-- O site reaproveita os DTOs (contratos da API) e os perfis definidos nas camadas internas. -->
+  <ItemGroup>
+    <ProjectReference Include="..\Educacional.Application\Educacional.Application.csproj" />
+  </ItemGroup>
+
+</Project>

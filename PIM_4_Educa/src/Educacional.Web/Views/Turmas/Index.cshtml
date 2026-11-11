@@ -1,0 +1,37 @@
+@model List<TurmaDto>
+@{
+    ViewData["Title"] = "Turmas";
+}
+<h1>@(User.IsInRole(Perfis.Admin) ? "Todas as turmas" : "Minhas turmas")</h1>
+
+@if (Model.Count == 0)
+{
+    <p class="vazio">Nenhuma turma encontrada.</p>
+}
+else
+{
+    <div class="tabela-wrap">
+        <table>
+            <caption class="sr-only">Lista de turmas</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Turma</th>
+                    <th scope="col">Disciplina</th>
+                    <th scope="col">Período</th>
+                    <th scope="col">Professor(a)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var t in Model)
+                {
+                    <tr>
+                        <td><a asp-action="Detalhes" asp-route-id="@t.Id">@t.Nome</a></td>
+                        <td>@t.Disciplina</td>
+                        <td>@t.Periodo</td>
+                        <td>@t.Professor</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

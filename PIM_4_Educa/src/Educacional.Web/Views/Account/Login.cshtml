@@ -1,0 +1,41 @@
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Entrar";
+}
+<section class="cartao login">
+    <h1>Entrar</h1>
+
+    @if (Context.Request.Query.ContainsKey("sessaoExpirada"))
+    {
+        <div class="alerta erro" role="alert">Sua sessão expirou. Entre novamente.</div>
+    }
+
+    <form asp-action="Login" method="post" novalidate>
+        <div asp-validation-summary="ModelOnly" class="alerta erro" role="alert"></div>
+        <input type="hidden" asp-for="ReturnUrl" />
+
+        <div class="campo">
+            <label asp-for="Email">E-mail</label>
+            <input asp-for="Email" type="email" autocomplete="username" required autofocus />
+            <span asp-validation-for="Email" class="campo-erro"></span>
+        </div>
+
+        <div class="campo">
+            <label asp-for="Senha">Senha</label>
+            <input asp-for="Senha" type="password" autocomplete="current-password" required />
+            <span asp-validation-for="Senha" class="campo-erro"></span>
+        </div>
+
+        <button class="btn" type="submit">Entrar</button>
+    </form>
+
+    <details class="dica">
+        <summary>Contas de teste (ambiente de demonstração)</summary>
+        <p>Senha de todas: <code>Senha@123</code></p>
+        <ul>
+            <li>Admin: admin@escola.com</li>
+            <li>Professora: ana.souza@escola.com</li>
+            <li>Aluno: joao.pereira@escola.com</li>
+        </ul>
+    </details>
+</section>

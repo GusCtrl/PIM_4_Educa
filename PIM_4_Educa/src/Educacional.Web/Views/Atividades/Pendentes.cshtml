@@ -1,0 +1,37 @@
+@model List<AtividadePendenteDto>
+@{
+    ViewData["Title"] = "Atividades pendentes";
+}
+<h1>Atividades pendentes</h1>
+
+@if (Model.Count == 0)
+{
+    <p class="vazio">Nenhuma atividade pendente. Bom trabalho!</p>
+}
+else
+{
+    <div class="tabela-wrap">
+        <table>
+            <caption class="sr-only">Atividades que ainda podem ser entregues</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Atividade</th>
+                    <th scope="col">Disciplina</th>
+                    <th scope="col">Turma</th>
+                    <th scope="col">Prazo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var a in Model)
+                {
+                    <tr>
+                        <td><a asp-action="Detalhes" asp-route-id="@a.AtividadeId">@a.Titulo</a></td>
+                        <td>@a.Disciplina</td>
+                        <td>@a.Turma</td>
+                        <td>@a.Prazo.ToString("dd/MM/yyyy HH:mm")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
